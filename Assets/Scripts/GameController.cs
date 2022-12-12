@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-public float velocidad = 10;
-Rigidbody bollaRigidBody;
-    void Start()
-    {
-        bollaRigidBody = GetComponent<Rigidbody>();
-    }
+	private Rigidbody rb;
+	[Range(1, 10)]
+	public float velocidad = 5;
 
-    void Update()
-    {
-        float vertical = Input.GetAxis("Vertical");
-        float horitzontal = Input.GetAxis("horitzontal");
+	void Start()
+	{
+		rb = GetComponent<Rigidbody>();
+	}
 
-        bollaRigidBody.AddForce(new Vector3(horitzontal,0,vertical) * velocidad);
-    }
+	void FixedUpdate()
+	{
+		float movimientoH = Input.GetAxis("Horizontal");
+		float movimientoV = Input.GetAxis("Vertical");
+
+		Vector3 movimiento = new Vector3(movimientoH * velocidad, 0.0f, movimientoV * velocidad);
+
+		rb.AddForce(movimiento);
+	}
 }
