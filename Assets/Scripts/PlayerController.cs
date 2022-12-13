@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 10;
+    public float speed = 20;
+    public float turnSpeed = 100;
     private float horizontalInput;
     private float verticalInput;
 
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput);
-        transform.Rotate(Vector3.up, speed * Time.deltaTime * horizontalInput);
+        transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * horizontalInput);
     }
     void OnTriggerEnter(Collider other)
     {
